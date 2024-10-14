@@ -38,31 +38,32 @@ const album = {
 	]
   };
   
-  // Menampilkan semua data sebagai JSON
+  // Log album data as JSON
+  console.log("Album Data:");
   console.log(JSON.stringify(album, null, 2));
   
-  // TODO 1 : Dapatkan semua data
-  console.log("Semua data dalam format tabel:");
+  // Tampilkan data dalam tabel
+  console.log("Tabel Album:");
   console.table(album);
   
-  // Filter lagu dengan nomor track lebih dari atau sama dengan 3
+  // Filter tracks with track number ≥ 3
   const minTrackNumber = 3;
   const filteredByTrackNumber = album.tracklist.filter(track => track.track_number >= minTrackNumber);
+  console.log(`Tracks with track number ≥ ${minTrackNumber}:`);
+  console.table(filteredByTrackNumber);
   
-  console.log(`Lagu dengan nomor track lebih dari atau sama dengan ${minTrackNumber}:`, filteredByTrackNumber);
-  
-  // Filter lagu yang judulnya mengandung kata tertentu
+  // Filter tracks with title containing "Spicy"
   const keyword = "Spicy";
   const filteredByTitle = album.tracklist.filter(track => track.title.toLowerCase().includes(keyword.toLowerCase()));
+  console.log(`Tracks with title containing "${keyword}":`);
+  console.table(filteredByTitle);
   
-  console.log(`Lagu yang mengandung kata "${keyword}":`, filteredByTitle);
-  
-  // Filter lagu yang durasinya lebih dari 3 menit (180 detik)
+  // Filter tracks with duration > 3 minutes (180 seconds)
   function convertToSeconds(duration) {
 	const [minutes, seconds] = duration.split(":");
 	return parseInt(minutes) * 60 + parseInt(seconds);
   }
   
   const filteredByDuration = album.tracklist.filter(track => convertToSeconds(track.duration) > 180);
-  
-  console.log("Lagu dengan durasi lebih dari 3 menit:", filteredByDuration);
+  console.log("Tracks with duration > 3 minutes:");
+  console.table(filteredByDuration);
